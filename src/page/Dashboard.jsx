@@ -2,7 +2,7 @@ import React from 'react'
 import { BiCalendarAlt } from 'react-icons/bi'
 import { FaFilter } from 'react-icons/fa6'
 import { FcAreaChart, FcBarChart, FcComboChart, FcDoughnutChart, FcLineChart, FcPieChart } from 'react-icons/fc'
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, RadialBar, RadialBarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 const data = [
     { label: "January", data1: 10, data2: 5, data3: 15 },
     { label: "February", data1: 15, data2: 8, data3: 12 },
@@ -79,15 +79,29 @@ function Dashboard() {
                             <XAxis dataKey="label" />
                             <YAxis />
                             <Bar dataKey="data1" fill="#476bfa" />
-                            <Tooltip />
+                            {/* <Tooltip /> */}
                             <Legend verticalAlign="top" height={36} align='right' iconType="circle" />
-
                             <Bar dataKey="data1" fill="#0be7fb" />
                             <Bar dataKey="data3" fill="#fa916b" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
-
+                <div style={{ background: "var(--white)", position: "relative", height: "550px", padding: "30px", borderRadius: "10px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.5)" }}>
+                    <RadialBarChart
+                        width={450}
+                        height={550}
+                        innerRadius="50%"
+                        outerRadius="100%"
+                        data={data}
+                        startAngle={360}
+                        endAngle={5}
+                        barGap={20}
+                    >
+                        <RadialBar minAngle={100} label={{ fill: '#66', position: 'insideStart' }} background clockWise={true} dataKey='data1'  />
+                        <Legend iconSize={10} width={70} height={10} layout='horizontal' verticalAlign='middle' align="right" />
+                        <Tooltip />
+                    </RadialBarChart>
+                </div>
                 {/* <div style={{ display: "flex", alignItems: "center", gap: "10px", backgroundColor: "#ffccfa", padding: "6px 15px", borderRadius: "6px" }}>
                     <FcComboChart size={50} />
                     <div>
